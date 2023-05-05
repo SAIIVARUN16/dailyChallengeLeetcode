@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxVowels(string s, int k) {
+        unordered_map<char,int>mp;
+        int vowel=0,n=s.size(),ans=INT_MIN;
+        for(int i=0;i<k;i++){
+            mp[s[i]]++;
+            if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'){
+                vowel++;
+            }
+        }
+        ans=max(ans,vowel);
+        int j=0;
+        for(int i=k;i<n;i++){
+            mp[s[j]]--;
+            if(s[j]=='a'||s[j]=='e'||s[j]=='i'||s[j]=='o'||s[j]=='u'){
+                vowel--;
+            }
+            if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'){
+                vowel++;
+            }
+            ans=max(ans,vowel);
+            j++;
+        }
+        return ans;
+    }
+};
